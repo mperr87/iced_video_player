@@ -80,7 +80,7 @@ pub(crate) struct Internal {
 
     pub(crate) frame: Arc<Mutex<Frame>>,
     pub(crate) upload_frame: Arc<AtomicBool>,
-    pub(crate) redrawing: Arc<AtomicBool>,
+    pub(crate) relayout: Arc<AtomicBool>,
     pub(crate) last_frame_time: Arc<Mutex<Instant>>,
     pub(crate) looping: bool,
     pub(crate) is_eos: bool,
@@ -424,7 +424,7 @@ impl Video {
 
             frame,
             upload_frame,
-            redrawing: Arc::new(AtomicBool::new(false)),
+            relayout: Arc::new(AtomicBool::new(false)),
             last_frame_time,
             looping: false,
             is_eos: false,
