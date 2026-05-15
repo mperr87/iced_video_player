@@ -414,10 +414,10 @@ where
                 }
 
                 if inner.upload_frame.load(Ordering::SeqCst)
-                    // && !inner.redrawing.load(Ordering::SeqCst)
+                    && !inner.redrawing.load(Ordering::SeqCst)
                 {
                     if let Some(on_new_frame) = self.on_new_frame.clone() {
-                        // inner.redrawing.store(true, Ordering::SeqCst);
+                        inner.redrawing.store(true, Ordering::SeqCst);
                         shell.publish(on_new_frame);
                     }
                 }
