@@ -261,7 +261,7 @@ where
         let drawing_bounds = iced::Rectangle::new(position, final_size);
 
         let upload_frame = inner.upload_frame.swap(false, Ordering::SeqCst);
-        // inner.redrawing.store(false, Ordering::SeqCst);
+        inner.redrawing.store(false, Ordering::SeqCst);
 
         if upload_frame {
             let last_frame_time = inner
@@ -414,10 +414,9 @@ where
                 }
 
                 if inner.upload_frame.load(Ordering::SeqCst)
-                    && !inner.redrawing.load(Ordering::SeqCst)
                 {
                     if let Some(on_new_frame) = self.on_new_frame.clone() {
-                        inner.redrawing.store(true, Ordering::SeqCst);
+                        // inner.redrawing.store(true, Ordering::SeqCst);
                         shell.publish(on_new_frame);
                     }
                 }
